@@ -1,4 +1,4 @@
-package com.knotacademy.qc.appium.tests.session6;
+package com.knotacademy.qc.appium.tests.session;
 
 import com.knotacademy.qc.appium.core.MobileBaseTest;
 import com.knotacademy.qc.appium.pages.LoginPage;
@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * FormTest: Pruebas de interacción con formularios (Session 6).
+ * FormTest: Pruebas de interacción con formularios (Session Única).
  *
  * Verifica que:
  * 1. El input de texto funciona correctamente (sendKeys)
@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author QA Automation Team
  * @version 1.0
  */
-@Epic("Session 6 - Advanced Mobile Interactions")
+@Epic("Session Única - Appium Automation")
 @Feature("Form Handling")
 public class FormTest extends MobileBaseTest {
 

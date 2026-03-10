@@ -1,4 +1,4 @@
-package com.knotacademy.qc.appium.tests.session6;
+package com.knotacademy.qc.appium.tests.session;
 
 import com.knotacademy.qc.appium.core.MobileBaseTest;
 import com.knotacademy.qc.appium.pages.ProductsPage;
@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * ScrollTest: Pruebas de scroll y gestos deslizantes (Session 6).
+ * ScrollTest: Pruebas de scroll y gestos deslizantes (Session Única).
  *
  * Verifica que:
  * 1. Se puede hacer scroll en la lista de productos
@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author QA Automation Team
  * @version 1.0
  */
-@Epic("Session 6 - Advanced Mobile Interactions")
+@Epic("Session Única - Appium Automation")
 @Feature("Scrolling and Swiping")
 public class ScrollTest extends MobileBaseTest {
 

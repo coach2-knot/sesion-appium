@@ -1,4 +1,4 @@
-package com.knotacademy.qc.appium.tests.session5;
+package com.knotacademy.qc.appium.tests.session;
 
 import com.knotacademy.qc.appium.core.MobileBaseTest;
 import com.knotacademy.qc.appium.pages.ProductsPage;
@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * LaunchTest: Pruebas de lanzamiento de la aplicación (Session 5).
+ * LaunchTest: Pruebas de lanzamiento de la aplicación (Session Única).
  *
  * Verifica que:
  * 1. La aplicación se abre correctamente
@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author QA Automation Team
  * @version 1.0
  */
-@Epic("Session 5 - Mobile App Fundamentals")
+@Epic("Session Única - Appium Automation")
 @Feature("App Launch and Navigation")
 public class LaunchTest extends MobileBaseTest {
 

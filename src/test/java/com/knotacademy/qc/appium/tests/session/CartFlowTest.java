@@ -1,4 +1,4 @@
-package com.knotacademy.qc.appium.tests.session6;
+package com.knotacademy.qc.appium.tests.session;
 
 import com.knotacademy.qc.appium.core.MobileBaseTest;
 import com.knotacademy.qc.appium.pages.ProductsPage;
@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * CartFlowTest: Pruebas end-to-end del flujo de carrito (Session 6).
+ * CartFlowTest: Pruebas end-to-end del flujo de carrito (Session Única).
  *
  * Verifica el flujo completo:
  * 1. Iniciar sesión o continuar desde ProductsPage
@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author QA Automation Team
  * @version 1.0
  */
-@Epic("Session 6 - Advanced Mobile Interactions")
+@Epic("Session Única - Appium Automation")
 @Feature("End-to-End Shopping Flow")
 public class CartFlowTest extends MobileBaseTest {
 

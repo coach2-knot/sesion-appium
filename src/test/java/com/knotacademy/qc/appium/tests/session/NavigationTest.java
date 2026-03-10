@@ -1,4 +1,4 @@
-package com.knotacademy.qc.appium.tests.session5;
+package com.knotacademy.qc.appium.tests.session;
 
 import com.knotacademy.qc.appium.core.MobileBaseTest;
 import com.knotacademy.qc.appium.pages.ProductsPage;
@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * NavigationTest: Pruebas de navegación entre pantallas (Session 5).
+ * NavigationTest: Pruebas de navegación entre pantallas (Session Única).
  *
  * Verifica que:
  * 1. Se puede navegar de la lista de productos al detalle
@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author QA Automation Team
  * @version 1.0
  */
-@Epic("Session 5 - Mobile App Fundamentals")
+@Epic("Session Única - Appium Automation")
 @Feature("Navigation")
 public class NavigationTest extends MobileBaseTest {
 

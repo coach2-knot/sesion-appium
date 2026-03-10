@@ -26,11 +26,10 @@ proyecto_appium_estudiantes/
 │   │   │   ├── ProductDetailPage.java          # [TODO: Completar locators]
 │   │   │   └── CartPage.java                   # [TODO: Completar locators]
 │   │   └── tests/
-│   │       ├── session5/
-│   │       │   ├── LaunchTest.java             # Tests de lanzamiento
-│   │       │   ├── LoginTest.java              # Tests de login
-│   │       │   └── NavigationTest.java         # Tests de navegación
-│   │       └── session6/
+│   │       └── session/
+│   │           ├── LaunchTest.java             # Tests de lanzamiento
+│   │           ├── LoginTest.java              # Tests de login
+│   │           ├── NavigationTest.java         # Tests de navegación
 │   │           ├── FormTest.java               # Tests de formularios
 │   │           ├── ScrollTest.java             # Tests de scroll
 │   │           └── CartFlowTest.java           # Tests end-to-end
@@ -144,11 +143,60 @@ mvn clean test -Dtest=FormTest
 mvn clean test
 ```
 
+### Paso 5: Revisar resultados en Allure
+
+Este proyecto ya tiene integración con Allure en `pom.xml` (`allure-junit5` + `allure-maven`).
+
+1. Ejecuta uno o varios tests:
+```bash
+# Clase completa
+mvn -Dtest=LaunchTest test
+
+# Método puntual
+mvn -Dtest='LaunchTest#testAppLaunchesSuccessfully' test
+
+# Suite completa
+mvn clean test
+```
+
+2. Abre el reporte interactivo:
+```bash
+mvn allure:serve
+```
+
+3. Si prefieres reporte estático (sin servidor temporal):
+```bash
+mvn allure:report
+```
+Luego abre:
+`target/site/allure-maven-plugin/index.html`
+
+4. Ubicaciones importantes:
+- Resultados crudos de ejecución: `target/allure-results/`
+- Reporte HTML generado: `target/site/allure-maven-plugin/`
+- Resultados de surefire: `target/surefire-reports/`
+
+5. Si quieres evitar mezclar corridas viejas con nuevas:
+```bash
+mvn clean
+```
+
 ## Credenciales de Prueba
 
 Use estas credenciales para escenarios de login (opcionales):
 - **Usuario:** `alice@example.com`
 - **Contraseña:** `10203040`
+
+## Qué revisar en Allure
+
+1. **Overview:** total de pruebas, porcentaje de éxito y duración general.
+2. **Suites:** qué clase/método falló exactamente.
+3. **Defects:** agrupación de fallos por tipo de error.
+4. **Timeline:** tiempos y orden de ejecución.
+5. **Behaviors:** agrupación por `@Epic`, `@Feature`, `@Story`.
+6. **Stack trace del fallo:** causa real del error (locator, timeout, assertion, etc.).
+
+Tip: cuando falle un test, cruza Allure con `target/surefire-reports` para ver el detalle completo del stacktrace.
 
 ## Consejos para Encontrar Locators
 
@@ -201,16 +249,17 @@ public class MyPage extends MobileBasePage {
 }
 ```
 
-## Archivos ya Completados (No modificar)
+## Archivos Base (Referenciales)
 
-Los siguientes archivos YA están completos y NO necesitan cambios:
+Los siguientes archivos base ya están configurados y normalmente no requieren cambios:
 
 - ✓ `ConfigLoader.java` - Cargador de propiedades
 - ✓ `DriverFactory.java` - Factory de drivers
 - ✓ `MobileBaseTest.java` - Clase base para tests
 - ✓ `MobileBasePage.java` - Clase base para pages
-- ✓ Todos los test files (`LaunchTest.java`, `LoginTest.java`, etc.)
 - ✓ Archivos de propiedades
+
+Los archivos de tests sí pueden ajustarse según tu práctica de la sesión.
 
 ## Flujo de la Aplicación
 
@@ -242,6 +291,11 @@ Una vez completes ProductsPage, ejecuta `LaunchTest` y `NavigationTest` para val
 
 ## Troubleshooting
 
+### Allure no abre o no muestra datos
+- Verifica que ejecutaste pruebas antes de abrir Allure.
+- Confirma que exista `target/allure-results/`.
+- Si el reporte se ve vacío, corre `mvn clean test` y luego `mvn allure:serve`.
+
 ### "Elemento no encontrado"
 - Verifica el locator en Appium Inspector
 - Asegúrate de que la app está en la pantalla correcta
@@ -269,12 +323,28 @@ mvn clean install
 mvn clean test -Dtest=LaunchTest -v
 ```
 
+### Warning de script timeout en Android
+- Es esperado en algunas combinaciones Appium + UiAutomator2.
+- El proyecto ya lo maneja con warning y la ejecución continúa.
+
 ## Notas Importantes
 
 1. **Paciencia:** Encontrar locators lleva tiempo. Lee bien los atributos del elemento.
 2. **Estabilidad:** Prefiere `content-desc` > `resource-id` > `xpath`
 3. **Testing:** Ejecuta los tests después de completar cada página.
 4. **Logs:** Los tests generan logs en `target/logs/` que te ayudan a diagnosticar problemas.
+
+## Checklist Antes de Sesión
+
+- Appium levantado en `http://127.0.0.1:4723`.
+- Emulador/dispositivo Android encendido y desbloqueado.
+- APK disponible en `apps/SauceLabs.apk`.
+- Correr smoke rápido: `mvn -Dtest=LaunchTest test`.
+- Revisar reporte: `mvn allure:serve`.
+- Si vas a correr flujos de carrito/navegación, completar locators pendientes en:
+  - `ProductsPage` (`PRODUCT_ITEMS`, `CART_BADGE`)
+  - `ProductDetailPage`
+  - `CartPage`
 
 ## Criterios de Éxito
 

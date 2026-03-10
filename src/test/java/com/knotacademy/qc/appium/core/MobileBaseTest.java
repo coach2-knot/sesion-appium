@@ -5,6 +5,7 @@ import com.knotacademy.qc.appium.pages.ProductsPage;
 import io.appium.java_client.AppiumDriver;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
+import org.openqa.selenium.UnsupportedCommandException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -78,7 +79,14 @@ public abstract class MobileBaseTest {
         Duration timeout = Duration.ofSeconds(timeoutSeconds);
 
         driver.manage().timeouts().implicitlyWait(timeout);
-        driver.manage().timeouts().scriptTimeout(timeout);
+
+        // Algunos drivers móviles no implementan script timeout (ej. UiAutomator2 en ciertas versiones de Appium)
+        try {
+            driver.manage().timeouts().scriptTimeout(timeout);
+        } catch (UnsupportedCommandException e) {
+            logger.warn("Script timeout no soportado por el driver actual: {}", e.getMessage());
+        }
+
         logger.info("Timeouts configurados: {} segundos", timeoutSeconds);
     }
 

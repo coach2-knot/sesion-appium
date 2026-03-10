@@ -6,11 +6,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.knotacademy</groupId>
-    <artifactId>proyecto_appium_sesion5_6</artifactId>
+    <artifactId>proyecto_appium_sesion_unica</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>Proyecto Appium Sessions 5-6 - QA Automation</name>
+    <name>Proyecto Appium Session Unica - QA Automation</name>
     <description>Pruebas automatizadas con Appium para la SauceLabs Demo App en Android e iOS</description>
 
     <properties>
