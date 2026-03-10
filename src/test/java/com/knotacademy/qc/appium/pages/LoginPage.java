@@ -24,19 +24,19 @@ public class LoginPage extends MobileBasePage {
 
     // TODO: Usar Appium Inspector para encontrar el locator del campo de usuario
     // Pista: Busca el content-desc o resource-id del campo de texto del username
-    private static final By USERNAME_FIELD = By.xpath("TODO_COMPLETAR");
+    private static final By USERNAME_FIELD = By.xpath("");
 
     // TODO: Usar Appium Inspector para encontrar el locator del campo de contraseña
-    private static final By PASSWORD_FIELD = By.xpath("TODO_COMPLETAR");
+    private static final By PASSWORD_FIELD = By.xpath("");
 
     // TODO: Usar Appium Inspector para encontrar el locator del botón de login
-    private static final By LOGIN_BUTTON = By.xpath("TODO_COMPLETAR");
+    private static final By LOGIN_BUTTON = By.xpath("");
 
     // TODO: Buscar el elemento que muestra el mensaje de error
-    private static final By ERROR_MESSAGE = By.xpath("TODO_COMPLETAR");
+    private static final By ERROR_MESSAGE = By.xpath("");
 
     // TODO: Locator para verificar que estamos en la pantalla de login (busca el título "Login")
-    private static final By LOGIN_TITLE = By.xpath("TODO_COMPLETAR");
+    private static final By LOGIN_TITLE = By.xpath("");
 
     /**
      * Constructor de la página de login.
@@ -80,8 +80,14 @@ public class LoginPage extends MobileBasePage {
         try {
             type(USERNAME_FIELD, username);
             type(PASSWORD_FIELD, password);
-            hideKeyboard();
-            tap(LOGIN_BUTTON);
+            try {
+                tap(LOGIN_BUTTON);
+            } catch (RuntimeException firstTapError) {
+                logger.debug("Primer intento de tap en login falló, reintentando tras ocultar teclado: {}",
+                        firstTapError.getMessage());
+                hideKeyboard();
+                tap(LOGIN_BUTTON);
+            }
 
             logger.info("Login completado");
         } catch (Exception e) {

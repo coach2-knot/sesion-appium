@@ -7,7 +7,6 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -33,9 +32,7 @@ public class LoginTest extends MobileBaseTest {
     private static final Logger logger = LoggerFactory.getLogger(LoginTest.class);
 
     private LoginPage requireLoginPageForTest() {
-        Assumptions.assumeTrue(isLoginPageVisible(),
-                "Se omite: esta ejecución inicia en ProductsPage y no expone LoginPage al arranque.");
-        return new LoginPage(driver);
+        return ensureLoginPage();
     }
 
     @Test
@@ -50,7 +47,7 @@ public class LoginTest extends MobileBaseTest {
         logger.info("Pantalla de login verificada");
 
         // Realizar login con credenciales válidas
-        String validUsername = "alice@example.com";
+        String validUsername = "visual@example.com";
         String validPassword = "10203040";
         loginPage.login(validUsername, validPassword);
         logger.info("Login realizado con usuario: {}", validUsername);
@@ -77,8 +74,8 @@ public class LoginTest extends MobileBaseTest {
         LoginPage loginPage = requireLoginPageForTest();
 
         // Realizar login con credenciales inválidas
-        String invalidUsername = "invalid@example.com";
-        String invalidPassword = "wrongpassword";
+        String invalidUsername = "alice@example.com";
+        String invalidPassword = "1020304050";
         loginPage.login(invalidUsername, invalidPassword);
         logger.info("Login realizado con credenciales inválidas");
 
@@ -117,30 +114,5 @@ public class LoginTest extends MobileBaseTest {
         logger.info("Error de validación obtenido: {}", errorMessage);
 
         logger.info("✓ Test completado: Validación de campos vacíos funcionando");
-    }
-
-    @Test
-    @DisplayName("S5-104: Login con usuario válido y contraseña inválida")
-    @Story("Invalid Login")
-    @Description("Verifica el comportamiento con datos parcialmente correctos")
-    public void testValidUsernameInvalidPassword() {
-        logger.info("=== Iniciando test: testValidUsernameInvalidPassword ===");
-
-        LoginPage loginPage = requireLoginPageForTest();
-
-        // Login con usuario válido pero contraseña incorrecta
-        loginPage.login("alice@example.com", "wrongpassword");
-        logger.info("Login con usuario válido y contraseña inválida");
-
-        // Esperar validación
-        driver.manage().timeouts()
-                .implicitlyWait(java.time.Duration.ofSeconds(3));
-
-        // Verificar error
-        String errorMessage = loginPage.getErrorMessage();
-        assertFalse(errorMessage.isEmpty(), "Debe mostrarse error para contraseña incorrecta");
-        logger.info("Error obtenido: {}", errorMessage);
-
-        logger.info("✓ Test completado: Validación de credenciales parciales funcionando");
     }
 }

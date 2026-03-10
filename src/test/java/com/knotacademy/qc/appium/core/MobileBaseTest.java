@@ -137,6 +137,33 @@ public abstract class MobileBaseTest {
     }
 
     /**
+     * Asegura que la prueba esté en LoginPage.
+     *
+     * Si ya está en login, continúa.
+     * Si inicia en productos, navega mediante menú lateral (View menu -> Log In).
+     *
+     * @return Instancia de LoginPage ya cargada
+     */
+    protected LoginPage ensureLoginPage() {
+        LoginPage loginPage = new LoginPage(driver);
+        if (loginPage.isLoaded()) {
+            logger.info("La aplicación ya estaba en LoginPage");
+            return loginPage;
+        }
+
+        ProductsPage productsPage = ensureProductsPage();
+        productsPage.goToLoginFromMenu();
+
+        loginPage = new LoginPage(driver);
+        if (!loginPage.isLoaded()) {
+            throw new IllegalStateException("No fue posible llegar a LoginPage desde ProductsPage");
+        }
+
+        logger.info("LoginPage disponible tras navegación desde menú");
+        return loginPage;
+    }
+
+    /**
      * Indica si la pantalla de login está visible en el estado actual.
      *
      * @return true si LoginPage es visible

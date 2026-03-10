@@ -97,6 +97,7 @@ Necesitas encontrar los locators para:
    - **Pantalla de Detalle:** nombre, precio, descripción, add to cart, back button
    - **Pantalla de Carrito:** título, items, total, checkout button
    - **Pantalla de Login (opcional):** username, password, login button, error message
+     - Flujo para abrir login: **View menu** → **Log In**
 
 3. Para cada elemento, nota el locator preferido en este orden:
    - `content-desc` (accessibility id)

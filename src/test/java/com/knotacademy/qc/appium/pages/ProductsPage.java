@@ -25,15 +25,20 @@ public class ProductsPage extends MobileBasePage {
     private static final Logger logger = LoggerFactory.getLogger(ProductsPage.class);
 
     // TODO: Locator para el título "Products" de la página
-    private static final By PRODUCTS_TITLE = By.id("com.saucelabs.mydemoapp.android:id/productTV");
+    private static final By PRODUCTS_TITLE = By.id("");
 
     // TODO: Locator para cada item de producto en la lista
     // Busca un contenedor que represente cada producto (puede ser LinearLayout, card, etc.)
-    private static final By PRODUCT_ITEMS = By.id("com.saucelabs.mydemoapp.android:id/titleTV");
+    private static final By PRODUCT_ITEMS = By.id("");
 
     // TODO: Locator para el badge/ícono del carrito
     // Busca el elemento que muestra la cantidad de items en el carrito
     private static final By CART_BADGE = By.xpath("TODO_COMPLETAR");
+
+    // Menú lateral y opción de login
+    private static final By MENU_BUTTON = By.id("com.saucelabs.mydemoapp.android:id/menuIV");
+    private static final By LOGIN_MENU_ITEM = By.xpath(
+            "//*[@content-desc='Login Menu Item' or (@resource-id='com.saucelabs.mydemoapp.android:id/itemTV' and @text='Log In')]");
 
     private static final String PRODUCT_TITLE_FORMAT = "//*[@content-desc='store item']//following-sibling::*//*[contains(text(), '%s')]";
 
@@ -195,6 +200,36 @@ public class ProductsPage extends MobileBasePage {
         } catch (Exception e) {
             logger.error("Error al abrir el carrito: {}", e.getMessage());
             throw new RuntimeException("No se pudo abrir el carrito", e);
+        }
+    }
+
+    /**
+     * Abre el menú lateral desde ProductsPage.
+     */
+    public void openMenu() {
+        try {
+            tap(MENU_BUTTON);
+            logger.info("Menú lateral abierto");
+        } catch (Exception e) {
+            logger.error("Error al abrir el menú lateral: {}", e.getMessage());
+            throw new RuntimeException("No se pudo abrir el menú lateral", e);
+        }
+    }
+
+    /**
+     * Navega desde ProductsPage hasta LoginPage usando el menú lateral.
+     *
+     * Flujo: View menu -> Log In
+     */
+    public void goToLoginFromMenu() {
+        try {
+            openMenu();
+            pause(300);
+            tap(LOGIN_MENU_ITEM);
+            logger.info("Navegación a LoginPage realizada desde menú lateral");
+        } catch (Exception e) {
+            logger.error("Error al navegar a LoginPage desde menú: {}", e.getMessage());
+            throw new RuntimeException("No se pudo navegar a LoginPage desde el menú", e);
         }
     }
 }

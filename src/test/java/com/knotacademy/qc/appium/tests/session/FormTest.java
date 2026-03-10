@@ -7,7 +7,6 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -33,9 +32,7 @@ public class FormTest extends MobileBaseTest {
     private static final Logger logger = LoggerFactory.getLogger(FormTest.class);
 
     private LoginPage requireLoginPageForTest() {
-        Assumptions.assumeTrue(isLoginPageVisible(),
-                "Se omite: esta ejecución inicia en ProductsPage y no expone LoginPage al arranque.");
-        return new LoginPage(driver);
+        return ensureLoginPage();
     }
 
     @Test
