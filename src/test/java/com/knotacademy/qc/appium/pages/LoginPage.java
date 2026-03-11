@@ -24,19 +24,23 @@ public class LoginPage extends MobileBasePage {
 
     // TODO: Usar Appium Inspector para encontrar el locator del campo de usuario
     // Pista: Busca el content-desc o resource-id del campo de texto del username
-    private static final By USERNAME_FIELD = By.xpath("");
+    private static final By USERNAME_FIELD = By.xpath("//android.widget.EditText[@resource-id=\"com.saucelabs.mydemoapp.android:id/nameET\"]");
 
     // TODO: Usar Appium Inspector para encontrar el locator del campo de contraseña
-    private static final By PASSWORD_FIELD = By.xpath("");
+    private static final By PASSWORD_FIELD = By.xpath("//android.widget.EditText[@resource-id=\"com.saucelabs.mydemoapp.android:id/passwordET\"]");
 
     // TODO: Usar Appium Inspector para encontrar el locator del botón de login
-    private static final By LOGIN_BUTTON = By.xpath("");
+    private static final By LOGIN_BUTTON = By.xpath("//android.widget.Button[@content-desc=\"Tap to login with given credentials\"]");
 
     // TODO: Buscar el elemento que muestra el mensaje de error
-    private static final By ERROR_MESSAGE = By.xpath("");
+    private static final By ERROR_MESSAGE = By.xpath(
+        "//android.widget.TextView[@resource-id=\"com.saucelabs.mydemoapp.android:id/nameErrorTV\"]");
+
+    private static final By ERROR_LOCK = By.xpath(
+        "//android.widget.TextView[@resource-id=\"com.saucelabs.mydemoapp.android:id/passwordErrorTV\"]");
 
     // TODO: Locator para verificar que estamos en la pantalla de login (busca el título "Login")
-    private static final By LOGIN_TITLE = By.xpath("");
+    private static final By LOGIN_TITLE = By.xpath("//android.widget.TextView[@resource-id=\"com.saucelabs.mydemoapp.android:id/loginTV\"]");
 
     /**
      * Constructor de la página de login.
@@ -107,6 +111,19 @@ public class LoginPage extends MobileBasePage {
         try {
             if (isVisible(ERROR_MESSAGE)) {
                 String errorMessage = text(ERROR_MESSAGE);
+                logger.info("Mensaje de error obtenido: {}", errorMessage);
+                return errorMessage;
+            }
+        } catch (Exception e) {
+            logger.debug("No hay mensaje de error visible: {}", e.getMessage());
+        }
+        return "";
+    }
+
+    public String getErrorLock() {
+        try {
+            if (isVisible(ERROR_LOCK)) {
+                String errorMessage = text(ERROR_LOCK);
                 logger.info("Mensaje de error obtenido: {}", errorMessage);
                 return errorMessage;
             }

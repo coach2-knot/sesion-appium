@@ -75,7 +75,7 @@ public class LoginTest extends MobileBaseTest {
 
         // Realizar login con credenciales inválidas
         String invalidUsername = "alice@example.com";
-        String invalidPassword = "1020304050";
+        String invalidPassword = "10203040";
         loginPage.login(invalidUsername, invalidPassword);
         logger.info("Login realizado con credenciales inválidas");
 
@@ -84,7 +84,7 @@ public class LoginTest extends MobileBaseTest {
                 .implicitlyWait(java.time.Duration.ofSeconds(3));
 
         // Verificar que se muestra el mensaje de error
-        String errorMessage = loginPage.getErrorMessage();
+        String errorMessage = loginPage.getErrorLock();
         assertFalse(errorMessage.isEmpty(), "Debe mostrarse un mensaje de error para credenciales inválidas");
         logger.info("Mensaje de error obtenido: {}", errorMessage);
 

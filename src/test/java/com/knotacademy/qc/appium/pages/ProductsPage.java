@@ -25,15 +25,16 @@ public class ProductsPage extends MobileBasePage {
     private static final Logger logger = LoggerFactory.getLogger(ProductsPage.class);
 
     // TODO: Locator para el título "Products" de la página
-    private static final By PRODUCTS_TITLE = By.id("");
+    private static final By PRODUCTS_TITLE = By.id("com.saucelabs.mydemoapp.android:id/productTV");
 
     // TODO: Locator para cada item de producto en la lista
     // Busca un contenedor que represente cada producto (puede ser LinearLayout, card, etc.)
-    private static final By PRODUCT_ITEMS = By.id("");
+    private static final By PRODUCT_ITEMS = By.id("com.saucelabs.mydemoapp.android:id/titleTV");
 
     // TODO: Locator para el badge/ícono del carrito
     // Busca el elemento que muestra la cantidad de items en el carrito
-    private static final By CART_BADGE = By.xpath("TODO_COMPLETAR");
+    private static final By CART_BADGE = By.id("com.saucelabs.mydemoapp.android:id/cartIV");
+    //By.xpath("//android.widget.ImageView[@content-desc="Displays number of items in your cart"]");
 
     // Menú lateral y opción de login
     private static final By MENU_BUTTON = By.id("com.saucelabs.mydemoapp.android:id/menuIV");
